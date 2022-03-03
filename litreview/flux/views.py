@@ -6,7 +6,7 @@ from . import models
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
-from django.db.models import Q
+
 
 User = get_user_model()
 
@@ -64,9 +64,6 @@ def follow_users(request):
 
 @login_required
 def home(request):
-    print('===============')
-    print(models.Ticket.objects.all())
-    print('===============')
     followed = models.UserFollows.objects.filter(user=request.user).values_list('followed_user_id', flat=True)
     user_review = models.Review.objects.filter(user=request.user)
     user_ticket = models.Ticket.objects.filter(user=request.user)
@@ -93,17 +90,16 @@ def home(request):
         if len(any_review) > 0:
             all_reviews.append(my_ticket)
 
-
     paginator = Paginator(tickets_and_reviews, 6)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
- 
+
     return render(
         request,
         'flux/home.html',
         context={
-            'page_obj' : page_obj,
+            'page_obj': page_obj,
             'all_reviews': all_reviews
         }
     )
