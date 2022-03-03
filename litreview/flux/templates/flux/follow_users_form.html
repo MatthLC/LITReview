@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="row text-center ">
+		
+		<form method="post">
+			<h2 class="">Suivre d'autres utilisateurs</h2>
+			<div class="row ">
+				<div class="col-10">
+					{{ follow_form.as_p }}
+				</div>
+				<div class="col-2">
+					<button type="submit" class="btn btn-primary">Envoyer</button>
+				</div>
+				{% if unknown_user %}
+					<p class="alert alert-warning">{{unknown_user}}</p>
+				{% endif %}
+			</div>
+			{% csrf_token %}
+		</form>
+
+		<h2 class="">Abonnements</h2>
+		{% for user in following %}
+		
+				<form method="post">
+					{{ unfollow_form }}
+					{% csrf_token %}
+					<input type="hidden" value='{{user.id}}' name="user_id">
+					<div class="row">
+						<div class="col-10 border text-start align-middle">
+							{{ user.followed_user }}
+						</div>
+						<div class="col-2">
+							<button type="submit" class="btn btn-primary">Désabonner</button>
+						</div>
+					</div>
+				</form>
+		
+		{% endfor %}
+
+		<div class="col text-start">
+			<h2>Abonnés</h2>
+			{% for user in followed_by %}
+				<div class="row border">
+					<div>
+						{{ user.user }}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock content %}

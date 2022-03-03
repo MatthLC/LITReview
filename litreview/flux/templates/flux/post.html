@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load blog_extras %}
+{% block content %}
+	{% for instance in tickets_and_reviews %}
+		{% if instance|model_type == 'Ticket' %}
+		<div class="card border-2">
+			<section class="card-body">
+				{% include 'flux/partials/ticket_snippet.html' with ticket=instance %}
+
+				<div class = "d-flex justify-content-end mt-2">
+					<a href="{% url 'edit_post' instance.id %}"><button type='submit' class="btn btn-primary me-2">Modifier</button></a>
+					<form method="post">
+						{{ widget_ticket_form }}
+						<input type="hidden" value='{{instance.id}}' name="ticket_id">
+						{% csrf_token %}
+						<button type="submit" class="btn btn-primary ms-2">Supprimer</button>
+					</form>
+				</div>
+			</section>
+		</div>
+			
+		{% endif %}
+
+		{% if instance|model_type == 'Review' %}
+		<div class="card border-2">
+			<section class="card-body">
+				{% include 'flux/partials/review_snippet.html' with review=instance %}
+			
+				<div class="d-flex justify-content-end mt-2">
+					<a href="{% url 'edit_review' instance.id %}"><button type='submit' class="btn btn-primary me-2">Modifier</button></a>
+					<form method="post">
+						{{ widget_review_form }}
+						<input type="hidden" value='{{instance.id}}' name="review_id">
+						{% csrf_token %}
+						<button type="submit" class="btn btn-primary ms-2">Supprimer</button>
+					</form>
+				</div>
+			</section>
+		</div>
+		{% endif %}
+
+
+	{% endfor %}
+{% endblock content %}
