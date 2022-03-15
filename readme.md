@@ -56,7 +56,7 @@ Dans votre navigateur préféré, allez à l'adresse suivante :
 http://127.0.0.1:8000/
 
 
-## ** Fonctionnement de l'application **
+## **Fonctionnement de l'application**
 
 ### 1. Connexion
 
