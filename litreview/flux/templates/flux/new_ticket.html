@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div class="row">
+		<div class="col text-center">
+			<h3 class="">Créer un ticket</h3>
+		</div>
+		<form method= "post" enctype="multipart/form-data">
+			<div class="col">
+				<div class="form-control">
+					{{ form|crispy }}
+				</div>
+			</div>
+			{% csrf_token %}
+
+			<div class="d-flex justify-content-end mt-3">
+				<button type="submit" class="btn btn-primary">Envoyer</button>
+			</div>
+		</form>
+	</div>
+	
+{% endblock content %}

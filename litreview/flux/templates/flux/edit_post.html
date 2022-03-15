@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<h2 class="text-center">Modifier votre ticket</h2>
+	<form method="post" enctype="multipart/form-data">
+		{{ edit_form|crispy }}
+		{% csrf_token %}
+		<div class="d-flex justify-content-end">
+			<button type="submit" class="btn btn-primary">Envoyer</button>
+		</div>
+		
+	</form>
+{% endblock content %}

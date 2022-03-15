@@ -1,0 +1,26 @@
+{% load blog_extras %}
+<div class="d-flex justify-content-between">
+	<p>{%get_poster_display review.user%}</p>
+	<p>{{review.time_created}}</p>
+</div>
+
+<h5>{{ review.headline }} - <img class='' src="../media/stars-{{review.rating}}.png" alt="" width=100></h5>
+
+<p>{{ review.body }}</p>
+
+<div class="container border border-1">
+	
+	<div class="d-flex justify-content-between">
+		{% if review.ticket.user == request.user %}
+			<p>Vous avez demandé une critique</p>
+		{% else %}
+			<p>{{review.ticket.user}} à demandé une critique</p>
+		{% endif %}
+		<p>{{review.ticket.time_created}}</p>
+	</div>
+
+	<h5>{{ review.ticket.title }}</h5> 
+	<img class="card-body" src="{{ review.ticket.image.url }}"  alt="">
+	
+</div>
+
