@@ -20,17 +20,17 @@ cd -- "D:\mon_dossier"
 - Créer l'environnement:
 
 
-`python -m venv tournament`
+`python -m venv env`
 
 - Activer l'environnement (L'environnement est activé une fois son nom affiché dans le terminal) : 
 
     - Windows:
 
-    `tournament/Scripts/Activate.ps1` 
+    `env/Scripts/Activate.ps1` 
 
     - Inux et MacOS:  
 
-    `source tournament/bin/activate`
+    `source env/bin/activate`
 
 - Installer les librairies : 
 
